@@ -96,8 +96,18 @@ function renderButtons() {
   state.glutenFreeCrust ? btnGFCrust.classList.add("active") : btnGFCrust.classList.remove("active");
 }
 
+// Iteration 4: change the HTML of `<aside class="panel price">`
+
 function renderPrice() {
-  // Iteration 4: change the HTML of `<aside class="panel price">`
+  let sum = basePrice;
+ 
+  state.pepperoni ? sum += ingredients.pepperoni.price : sum = sum; 
+  state.mushrooms ? sum += ingredients.mushrooms.price : sum = sum;
+  state.greenPeppers ? sum += ingredients.greenPeppers.price : sum = sum;
+  state.whiteSauce ? sum += ingredients.whiteSauce.price : sum = sum;
+  state.glutenFreeCrust ? sum += ingredients.glutenFreeCrust.price : sum = sum;
+  
+  document.querySelector('.price strong').textContent = sum;
 }
 
 renderEverything();
@@ -126,6 +136,7 @@ document.querySelector('.btn.btn-sauce').addEventListener('click', function () {
   state.whiteSauce = !state.whiteSauce;
   renderEverything();
 });
+
 // Iteration 2: Add click event listener on `<button class="btn btn-crust">`
 document.querySelector('.btn.btn-crust').addEventListener('click', function () {
   state.glutenFreeCrust = !state.glutenFreeCrust;
