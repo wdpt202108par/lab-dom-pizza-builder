@@ -55,11 +55,26 @@ function renderMushrooms() {
 }
 
 function renderGreenPeppers() {
-  // Iteration 1: set the visibility of `<section class="green-pepper">`
+  document.querySelectorAll('.green-pepper').forEach((oneGreenPepper) => {
+    if (state.greenPepper) {
+      oneGreenPepper.style.visibility = 'visible';
+    }
+    else {
+      oneGreenPepper.style.visibility = 'hidden';
+    }
+  });
 }
+  // Iteration 1: set the visibility of `<section class="green-pepper">`
 
 function renderWhiteSauce() {
   // Iteration 2: add/remove the class "sauce-white" of `<section class="sauce">`
+  const whiteSauceEl = document.querySelector('.sauce-white')
+  if (state.whiteSauce) {
+    whiteSauceEl.style.visibility = 'visible';
+  }
+  else {
+    whiteSauceEl.style.visibility = 'hidden';
+  }
 }
 
 function renderGlutenFreeCrust() {
