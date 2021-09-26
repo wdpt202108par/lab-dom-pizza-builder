@@ -135,7 +135,7 @@ function renderPrice() {
   // sans ingrédients, le totalPrice est égal au basePrice (cf ligne 4)
   let totalPrice = basePrice; 
 
-  //si l'ingrédient est sélectionné, afficher son prix et son nom sous forme de liste. Ajouter son prix au totalPrice.
+  // si l'ingrédient est sélectionné, afficher son prix et son nom sous forme de liste. Ajouter son prix au totalPrice.
   if (state.pepperoni === true){
    list.innerHTML +=  `<li> $1 pepperoni </li>`;
    totalPrice += ingredients.pepperoni.price;
@@ -159,7 +159,7 @@ function renderPrice() {
     totalPrice += ingredients.glutenFreeCrust.price ;
   }
 
-  //afficher le totalPrice
+  // afficher le totalPrice
   document.querySelector('strong').innerHTML = `$ ${totalPrice}`; 
 };
 renderEverything();
