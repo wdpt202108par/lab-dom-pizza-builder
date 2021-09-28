@@ -89,47 +89,46 @@ function renderGlutenFreeCrust() {
 
 function renderButtons() {
   // Iteration 3: add/remove the class "active" of each `<button class="btn">`
-  const pepperoni = document.querySelector('.btn-pepperoni');
-  if (state.pepperoni) {
-    pepperoni.classList.add('active');
-    
+  if (state.pepperoni){
+  document.querySelector('.btn.btn-pepperoni').classList.add('active')
   } else {
-    pepperoni.classList.remove('active');
+  document.querySelector('.btn.btn-pepperoni').classList.remove('active')
   }
-
-  const mushrooms = document.querySelector('.btn-mushrooms');
-  if (state.mushrooms) {
-    mushrooms.classList.add('active');
-    
+  if (state.mushrooms){
+  document.querySelector('.btn.btn-mushrooms').classList.add('active')
   } else {
-    mushrooms.classList.remove('active');
+  document.querySelector('.btn.btn-mushrooms').classList.remove('active')
   }
-
-  const greenpepper = document.querySelector('.btn-green-pepper');
-  if (state.greenpepper) {
-    greenpepper.classList.add('active');
-    
+  if (state.greenPeppers){
+  document.querySelector('.btn.btn-green-peppers').classList.add('active')
   } else {
-    greenpepper.classList.remove('active');
+  document.querySelector('.btn.btn-green-peppers').classList.remove('active')
   }
-
-  const sauce = document.querySelector('.btn-sauce');
-  if (state.sauce) {
-    sauce.classList.add('active');
-    
+  if (state.whiteSauce){
+  document.querySelector('.btn.btn-sauce').classList.add('active')
   } else {
-    sauce.classList.remove('active');
+  document.querySelector('.btn.btn-sauce').classList.remove('active')
   }
-
-  const crust = document.querySelector('.btn-crust');
-  if (state.crust) {
-    crust.classList.add('active');
-    
+  if (state.glutenFreeCrust){
+  document.querySelector('.btn.btn-crust').classList.add('active')
   } else {
-    crust.classList.remove('active');
+  document.querySelector('.btn.btn-crust').classList.remove('active')
   }
-function renderPrice() {
+}
+  
+ function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+  var totalPrice = basePrice
+  var $list = document.querySelector('aside.panel.price ul')
+  $list.innerHTML = ""
+
+  for (var ingredientKey in ingredients) {
+    if (state[ingredientKey]) {
+      totalPrice += ingredients[ingredientKey].price
+      $list.innerHTML += `<li>$${ingredients[ingredientKey].price} ${ingredients[ingredientKey].name.toLowerCase()}</li>`
+    }
+  }
+  document.querySelector('aside.panel.price strong').innerHTML = "$" + totalPrice
 }
 
 renderEverything();
@@ -141,24 +140,26 @@ document.querySelector('.btn.btn-pepperoni').addEventListener('click', function 
 });
 
 // Iteration 1: Add click event listener on `<button class="btn btn-mushrooms">`
-document.querySelector('.btn.btn-mushrooms').addEventListener('click', function () {
-  state.mushrooms = !state.mushrooms;
-  renderEverything();
-});
+document.querySelector('.btn.btn-mushrooms').onclick = function() {
+  state.mushrooms = !state.mushrooms
+  renderEverything()
+}
 
 // Iteration 1: Add click event listener on `<button class="btn btn-green-peppers">`
-document.querySelector('.btn.btn-green-peppers').addEventListener('click', function () {
-  state.greenPeppers = !state.greenPeppers;
-  renderEverything();
-});
+document.querySelector('.btn.btn-green-peppers').onclick = function() {
+  state.greenPeppers = !state.greenPeppers
+  renderEverything()
+}
 
 // Iteration 2: Add click event listener on `<button class="btn btn-sauce">`
-document.querySelector('.btn.btn-sauce').addEventListener('click', function () {
-  state.whiteSauce = !state.whiteSauce;
-  renderEverything();
-});
+document.querySelector('.btn.btn-sauce').onclick = function() {
+  state.whiteSauce = !state.whiteSauce
+  renderEverything()
+}
+
 // Iteration 2: Add click event listener on `<button class="btn btn-crust">`
-document.querySelector('.btn.btn-crust').addEventListener('click', function () {
-  state.glutenFreeCrust = !state.glutenFreeCrust;
-  renderEverything();
-});
+document.querySelector('.btn.btn-crust').onclick = function() {
+  state.glutenFreeCrust = !state.glutenFreeCrust
+  renderEverything()
+}
+
