@@ -93,6 +93,7 @@ function renderButtons() {
   //
   // Refactored to:
   //
+  // // css-class <=> state-name mapping
   // const mapClassState = {
   //   'btn-pepperoni': 'pepperoni',
   //   'btn-mushrooms': 'mushrooms',
@@ -157,7 +158,7 @@ function renderPrice() {
   //
 
   function total() {
-    // Get the currently choosen topings (state to `true`):
+    // Create a list of active ingredients names (the ones for those state is true)
     const topings = Object.keys(state).filter(name => state[name] === true);
 
     // Reduce to a price using `ingredients` object
@@ -169,19 +170,20 @@ function renderPrice() {
   }
   
   //
-  // style="textDecoration:line-through" to each <li> depending the state
+  // Empty the <ul> then append a <li> for each chosen ingredient
   //
 
-  const $lis = Array.from(document.querySelectorAll('.panel.price ul li'));
-  Object.keys(state).forEach(function (ingredient, i) {
-    const $li = $lis[i]; // retrieve the matching $li (by index because of same order)
+  const $ul = document.querySelector('.panel.price ul')
+  $ul.innerHTML = '' // empty <ul>
 
-    if (state[ingredient] === true) {
-      $li.style.textDecoration = 'initial';
-    } else {
-      $li.style.textDecoration = 'line-through';
+  Object.keys(state).forEach(function (ingredientName, i) {
+    if (state[ingredientName] === true) {
+      // $li.style.textDecoration = 'initial';
+      const $li = document.createElement('li')
+      $li.innerHTML = ingredients[ingredientName].name
+
+      $ul.appendChild($li)
     }
-    
   })
 
   //
@@ -189,7 +191,7 @@ function renderPrice() {
   //
 
   const price = total();
-  document.querySelector('.panel.price strong').textContent = `$${price}`
+  document.querySelector('.panel.price strong').textContent = `${price}`
 }
 
 renderEverything();
